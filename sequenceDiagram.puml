@@ -1,0 +1,25 @@
+@startuml sequenceDiagram
+
+participant administrator
+participant library
+participant "each Post" as eachPost
+participant "pending Comment" as pendingComment
+actor approver
+
+administrator->library
+library->eachPost : get pending comments
+eachPost->pendingComment : are you pending?
+eachPost-->library : pending comments
+
+library->pendingComment : request approval
+activate pendingComment #DarkBlue
+approver-\pendingComment : approve
+activate pendingComment
+deactivate pendingComment
+
+library<--pendingComment
+deactivate pendingComment
+
+library-->administrator
+
+@enduml
