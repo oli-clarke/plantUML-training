@@ -1,5 +1,20 @@
 @startuml
 'activity diagram'
+start
+:create comment;
+fork
+    :add to dashboard;
+fork again
+    :add to thread;
+end fork
+:send email>
+split
+    :decide on dashboard;
+split again
+    :receive reply<
+split again
+    :2 days elapsed;
+end split
 
 
 
