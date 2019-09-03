@@ -1,5 +1,5 @@
-@startuml
-'activity diagram'
+@startuml beta syntax
+
 start
 :create comment;
 fork
@@ -9,13 +9,27 @@ fork again
 end fork
 :send email>
 split
-    :decide on dashboard;
-split again
     :receive reply<
+    label approve
+    :Display Comment;
+    stop
+
+split again
+    :decide on dashboard;
+    if () then
+        :approve;
+        goto approve
+    else
+        :reject;
+        label reject
+        :Delete Comment;
+        stop
+    endif
+
 split again
     :2 days elapsed;
+    goto reject
+
 end split
-
-
 
 @enduml

@@ -8,17 +8,17 @@
 -->"Send Email"
 if "" then
 -->wait 2 days
--->"Delete Comment"
+-->"Delete Comment" as Delete
 -->(*)
 else
 -->receive email
--->"Display Comment"
+-->"Display Comment" as Display
 -->(*)
 else
 -->decide on Dashboard
 if ""
--->[Approve] "Display Comment"
+-->[Approve] Display
 else
--->[Reject] "Delete Comment"
+-->[Reject] Delete
 endif
 @enduml
