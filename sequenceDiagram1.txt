@@ -1,0 +1,15 @@
+@startuml
+actor User
+participant LoginForm
+participant LoginController
+participant AuthenticationService
+database Database
+
+User -> LoginForm : login
+LoginForm -> LoginController : login
+group backend
+LoginController -> AuthenticationService : authenticate
+AuthenticationService -/ Database : createSession
+User <-- AuthenticationService : token
+end
+@enduml

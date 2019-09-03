@@ -1,0 +1,4 @@
+@startuml
+actor Moderator
+Moderator --> Create Magazine
+@enduml
