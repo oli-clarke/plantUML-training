@@ -1,0 +1,23 @@
+@startuml interaction diagram
+allowmixing
+
+object administrator
+object pendingComment
+
+together {
+    object library
+    object eachPost
+}
+
+actor approver
+object reader
+
+administrator -> library : 1 display pending comments
+library -> eachPost : 2 get pending comments
+library <. eachPost : pending comments
+pendingComment <- library : 3 request approval
+pendingComment <- eachPost : 2.1 are you pending
+pendingComment <- approver : 4 approve
+library <- pendingComment : 5 I'm approved
+pendingComment -> reader : 4.1 comment approved
+@enduml
