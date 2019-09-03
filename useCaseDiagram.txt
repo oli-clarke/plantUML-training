@@ -5,11 +5,11 @@ actor Reader
 Moderator --> (Create Magazine)
 Moderator --> (Approve a comment)
 Author --> (Approve a comment)
-(Approve a comment) --|> (Create an article) : <<extends>>
 Author --> (Create an article)
-(Create an article) --|> (Create Magazine) : <<requires>>
 Author --> (by email)
-(by email) --|> (Approve a comment) : << extends >>
 Reader --> (Make a comment)
-(Make a comment) --|> (Create an article) : << extends >>
+(Create an article) --|> (Create Magazine) : <<requires>>
+(by email) --|> (Approve a comment) : << extends >>
+(Approve a comment) --|> (Create an article) : <<requires>>
+(Make a comment) --|> (Create an article) : <<requires>>
 @enduml
