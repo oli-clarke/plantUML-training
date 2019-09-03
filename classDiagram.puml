@@ -1,11 +1,14 @@
 @startuml
 
+interface IPerson{
+    string emailAddress
+    string credentials
+}
+
+IPerson --|> Person
 class Person
 {
     authenticates and communicates with user
-
-    email
-    credentials
 
     void CommentApproved(Comment c)
     bool areYouPending()
@@ -24,7 +27,7 @@ Administrator->Magazine : library
 ' keyed by Person (the author(s))
 ' Magazine "1" *-- "*" Article 
 Magazine "[Person]" -- "*" Article
-class Magazine
+class Magazine <<singleton>>
 {
     organises articles
 
@@ -32,9 +35,9 @@ class Magazine
     void IAmApproved(Comment pending)
 }
 
-Article "1" *--> "allComments" Comment
-Article "1" o--> "pendingComments" Comment
-Article "1" o--> "1..* author" Person
+Article "1" *--l> "allComments" Comment
+Article "1" o--l> "pendingComments" Comment
+Article "1" o--r> "1..* author" Person
 class Article
 {
     manages comments
@@ -43,6 +46,7 @@ class Article
 }
 
 Comment *--> Person : reader
+Comment .. Magazine
 class Comment
 {
     displays comment
