@@ -2,16 +2,16 @@
 
 participant administrator
 participant library
-participant "each Post" as eachPost
-participant "pending Comment" as pendingComment
+participant "each post" as eachPost
+participant "pending comment" as pendingComment
 actor approver
 
 administrator->library
-library->eachPost : get pending comments
+library->eachPost : get \npending \ncomments
 eachPost->pendingComment : are you pending?
-eachPost-->library : pending comments
+eachPost-->library : pending \ncomments
 
-library->pendingComment : request approval
+library->pendingComment : request \napproval
 activate pendingComment #DarkBlue
 approver-\pendingComment : approve
 activate pendingComment
