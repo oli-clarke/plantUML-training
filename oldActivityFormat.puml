@@ -1,0 +1,24 @@
+@startuml
+(*) --> "Create Comment"
+--> ==CREATING==
+==CREATING== --> "Add to Dashboard"
+==CREATING== --> "Add to Thread"
+"Add to Dashboard"-->==CREATED==
+"Add to Thread"--> ==CREATED==
+-->"Send Email"
+if "" then
+-->wait 2 days
+-->"Delete Comment"
+-->(*)
+else
+-->receive email
+-->"Display Comment"
+-->(*)
+else
+-->decide on Dashboard
+if ""
+-->[Approve] "Display Comment"
+else
+-->[Reject] "Delete Comment"
+endif
+@enduml
