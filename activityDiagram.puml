@@ -27,7 +27,7 @@ split again
     endif
 
 split again
-    :2 days elapsed;
+    :<&clock> 2 days;
     goto reject
 
 end split
