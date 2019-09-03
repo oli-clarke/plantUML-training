@@ -6,7 +6,7 @@ participant "each post" as eachPost
 participant "pending comment" as pendingComment
 actor approver
 
-administrator->library
+administrator->library : display \npending \ncomments
 library->eachPost : get \npending \ncomments
 eachPost->pendingComment : are you pending?
 eachPost-->library : pending \ncomments

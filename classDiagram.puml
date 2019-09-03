@@ -1,0 +1,55 @@
+@startuml
+
+class Person
+{
+    authenticates and communicates with user
+
+    email
+    credentials
+
+    void CommentApproved(Comment c)
+    bool areYouPending()
+}
+
+class Administrator
+{
+    approves comments
+
+    void approveComments()
+}
+Administrator->Magazine : library
+
+' commented out the contains relationship to try and show qualified assocation 
+' i.e. an indirect one: in this case Magazine has a Dictionary of Articles, 
+' keyed by Person (the author(s))
+' Magazine "1" *-- "*" Article 
+Magazine "[Person]" -- "*" Article
+class Magazine
+{
+    organises articles
+
+    void DisplayPendingComments()
+    void IAmApproved(Comment pending)
+}
+
+Article "1" *--> "allComments" Comment
+Article "1" o--> "pendingComments" Comment
+Article "1" o--> "1..* author" Person
+class Article
+{
+    manages comments
+
+    Collection<Comment> GetPendingComments()
+}
+
+Comment *--> Person : reader
+class Comment
+{
+    displays comment
+
+    void requestApproval()
+    void approve()
+    bool areYouPending()
+}
+
+@enduml
